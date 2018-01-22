@@ -13,6 +13,7 @@ import (
 	"os"
 	"os/exec"
 	"time"
+	"github.com/ethereum/go-ethereum/log"
 )
 
 func launchNode(cfgPath string) (*exec.Cmd, error) {
@@ -113,7 +114,9 @@ func (c *Client) SendPayload(pl []byte, b64From string, b64To []string) ([]byte,
 		From:    from,
 		To:      b64To,
 	}
+	log.Info("before sending")
 	res, err := c.do("send", req)
+	log.Error(fmt.Sprintf("Error: %v", err))
 	if err != nil {
 		return nil, err
 	}

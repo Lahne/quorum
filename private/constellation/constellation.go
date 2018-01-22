@@ -3,6 +3,7 @@ package constellation
 import (
 	"fmt"
 	"github.com/patrickmn/go-cache"
+	"github.com/ethereum/go-ethereum/log"
 	"time"
 )
 
@@ -14,6 +15,7 @@ type Constellation struct {
 func (g *Constellation) Send(data []byte, from string, to []string) (out []byte, err error) {
 	out, err = g.node.SendPayload(data, from, to)
 	if err != nil {
+		log.Error(fmt.Sprintf("Error: %v", err))
 		return nil, err
 	}
 	g.c.Set(string(out), data, cache.DefaultExpiration)
