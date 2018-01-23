@@ -103,6 +103,7 @@ func (c *Client) do(path string, apiReq interface{}) (*http.Response, error) {
 }
 
 func (c *Client) SendPayload(pl []byte, b64From string, b64To []string) ([]byte, error) {
+	log.Info("go into SendPayload")
 	var from string
 	if b64From == "" {
 		from = c.b64PublicKey

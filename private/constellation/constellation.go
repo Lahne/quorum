@@ -13,6 +13,10 @@ type Constellation struct {
 }
 
 func (g *Constellation) Send(data []byte, from string, to []string) (out []byte, err error) {
+	log.Info("go into send")
+	if g.node == nil {
+		log.Error("constellation.node is nil")
+	}
 	out, err = g.node.SendPayload(data, from, to)
 	if err != nil {
 		log.Error(fmt.Sprintf("Error: %v", err))
