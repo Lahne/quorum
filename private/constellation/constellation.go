@@ -68,6 +68,9 @@ func MustNew(configPath string) *Constellation {
 	if err != nil {
 		panic(fmt.Sprintf("MustNew error: %v", err))
 	}
+	if g == nil {
+		log.Error("Constellation is nil")
+	}
 	return g
 }
 

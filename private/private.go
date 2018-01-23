@@ -2,7 +2,7 @@ package private
 
 import (
 	"os"
-
+	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/private/constellation"
 )
 
@@ -13,6 +13,7 @@ type PrivateTransactionManager interface {
 
 func FromEnvironmentOrNil(name string) PrivateTransactionManager {
 	cfgPath := os.Getenv(name)
+	log.Info("cfgPath: " + cfgPath)
 	if cfgPath == "" {
 		return nil
 	}
